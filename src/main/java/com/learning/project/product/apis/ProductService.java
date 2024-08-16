@@ -11,13 +11,13 @@ public class ProductService {
 
 	private final ProductRepository productRepository;
 	
-	@Autowired
+	
 	public ProductService(ProductRepository productRepository) {
 		this.productRepository=productRepository;
 	}
 	
 	public Product createProduct(Product product) {
-		return productRepository.createProduct(product);
+		return productRepository.save(product);
 		
 	}
 	
@@ -29,7 +29,8 @@ public class ProductService {
 		return productRepository.findByName(name);
 	}
 	
-	public Category[] getAllcategories() {  //find all the possible categories
+	public Category[] findAllCategories() {  //find all the possible categories
+		//productRepository.findAllCategories();
 		return Category.values();
 	}
 	
@@ -38,6 +39,7 @@ public class ProductService {
 	}
 	
 	public String deleteProduct(Product product) {
+		productRepository.delete(product);
 		return "Product deleted";
 	}
 		
@@ -50,10 +52,10 @@ public class ProductService {
 		
 	}
 	
-	public Product updateProduct(Product product) {
-		return productRepository.updateProduct(product);
-	}
-	
+	/*
+	 * public Product updateProduct(Product product) { return
+	 * productRepository.updateProduct(product); }
+	 */
 	public Product saveProduct(Product product) {
 		return productRepository.save(product);
 	}
